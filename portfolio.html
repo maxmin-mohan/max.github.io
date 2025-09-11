@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Mohan Kumar Video Editor</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Mohan Kumar</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="portfolio.html" class="nav-link active">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="services.html" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Portfolio Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">My Portfolio</h1>
+            <p class="page-subtitle">A collection of my best video editing work</p>
+        </div>
+    </section>
+
+    <!-- Category Filter -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="weddings">Weddings</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+                <button class="filter-btn" data-filter="festivals">Festivals</button>
+                <button class="filter-btn" data-filter="special">Special Occasions</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section class="portfolio-section">
+        <div class="container">
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Videos will be loaded dynamically from JSON data -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Carousels -->
+    <section class="category-carousels">
+        <div class="container">
+            <!-- Weddings Carousel -->
+            <div class="category-section" id="weddings-carousel">
+                <h3 class="category-title">Wedding Videos</h3>
+                <div class="carousel-container">
+                    <div class="carousel-wrapper">
+                        <div class="carousel-track" id="weddingsCarousel">
+                            <div class="carousel-slide">
+                                <div class="video-card">
+                                    <div class="video-thumbnail">
+                                        <img src="assets/images/thumbnails/ankish-rutali-teaser.jpg" alt="Ankish & Rutali Teaser">
+                                        <div class="play-overlay">
+                                            <i class="fas fa-play"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-info">
+                                        <h4>Ankish & Rutali Teaser</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="video-card">
+                                    <div class="video-thumbnail">
+                                        <img src="assets/images/thumbnails/bride-groom-arrivals.jpg" alt="Bride & Groom Arrivals">
+                                        <div class="play-overlay">
+                                            <i class="fas fa-play"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-info">
+                                        <h4>Bride & Groom Arrivals</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="video-card">
+                                    <div class="video-thumbnail">
+                                        <img src="assets/images/thumbnails/pellikoduku.jpg" alt="Pellikoduku">
+                                        <div class="play-overlay">
+                                            <i class="fas fa-play"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-info">
+                                        <h4>Pellikoduku</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="video-card">
+                                    <div class="video-thumbnail">
+                                        <img src="assets/images/thumbnails/pellikuthuru.jpg" alt="Pellikuthuru">
+                                        <div class="play-overlay">
+                                            <i class="fas fa-play"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-info">
+                                        <h4>Pellikuthuru</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-btn prev" data-target="weddingsCarousel">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" data-target="weddingsCarousel">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Festivals Carousel -->
+            <div class="category-section" id="festivals-carousel">
+                <h3 class="category-title">Festival Videos</h3>
+                <div class="carousel-container">
+                    <div class="carousel-wrapper">
+                        <div class="carousel-track" id="festivalsCarousel">
+                            <div class="carousel-slide">
+                                <div class="video-card">
+                                    <div class="video-thumbnail">
+                                        <img src="assets/images/thumbnails/ganesh-fest-teaser.jpg" alt="Ganesh Fest Teaser">
+                                        <div class="play-overlay">
+                                            <i class="fas fa-play"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-info">
+                                        <h4>Ganesh Fest Teaser</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="video-card">
+                                    <div class="video-thumbnail">
+                                        <img src="assets/images/thumbnails/naga-swaram-event.jpg" alt="Naga Swaram Event">
+                                        <div class="play-overlay">
+                                            <i class="fas fa-play"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-info">
+                                        <h4>Naga Swaram Event</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-btn prev" data-target="festivalsCarousel">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" data-target="festivalsCarousel">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Special Occasions Carousel -->
+            <div class="category-section" id="special-carousel">
+                <h3 class="category-title">Special Occasions</h3>
+                <div class="carousel-container">
+                    <div class="carousel-wrapper">
+                        <div class="carousel-track" id="specialCarousel">
+                            <div class="carousel-slide">
+                                <div class="video-card">
+                                    <div class="video-thumbnail">
+                                        <img src="assets/images/thumbnails/house-warming-teaser.jpg" alt="House Warming Teaser">
+                                        <div class="play-overlay">
+                                            <i class="fas fa-play"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-info">
+                                        <h4>House Warming Teaser</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-btn prev" data-target="specialCarousel">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" data-target="specialCarousel">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Mohan Kumar</h3>
+                    <p>Professional Video Editor</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Mohan Kumar. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <video controls id="modalVideo">
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <!-- Featured Work Modal for Google Drive Videos -->
+    <div class="featured-work-modal" id="featuredWorkModal">
+        <div class="featured-work-modal-content">
+            <button class="featured-work-modal-close" id="featuredWorkModalClose" aria-label="Close video">
+                <i class="fas fa-times"></i>
+            </button>
+            <iframe class="featured-work-modal-video" id="featuredWorkModalVideo" frameborder="0" allowfullscreen></iframe>
+            <div class="featured-work-modal-info" id="featuredWorkModalInfo">
+                <h3 class="featured-work-modal-title" id="featuredWorkModalTitle"></h3>
+                <p class="featured-work-modal-category" id="featuredWorkModalCategory"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/carousel.js"></script>
+    <script src="assets/js/modal.js"></script>
+    <script src="assets/js/portfolio.js"></script>
+    <script>
+        // Load video data and populate portfolio
+        let videoData = [];
+        
+        async function loadVideoData() {
+            try {
+                const response = await fetch('videos-data.json');
+                if (response.ok) {
+                    videoData = await response.json();
+                    console.log('Loaded video data:', videoData);
+                } else {
+                    throw new Error('JSON file not found');
+                }
+            } catch (error) {
+                console.warn('Could not load from JSON file, using fallback data:', error.message);
+                // Fallback data
+                videoData = [
+                    {
+                        title: "Naga Swaram Event.mp4",
+                        driveLink: "https://drive.google.com/file/d/18-TOnOIbG_kxLLRgo1H-lXTQYSTyh9WT/view?usp=sharing",
+                        thumbnail: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=450&fit=crop&crop=center"
+                    },
+                    {
+                        title: "Ganesh Fest Teaser.mp4",
+                        driveLink: "https://drive.google.com/file/d/1cU4jM8vEfZuK9YsJ5Hny0vHPjjTYB4a5/view?usp=sharing",
+                        thumbnail: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop&crop=center"
+                    },
+                    {
+                        title: "Ankish & Rutali Teaser.mp4",
+                        driveLink: "https://drive.google.com/file/d/1hTduq4MczgWXYOI6bJMaeK7kiP52_nkb/view?usp=sharing",
+                        thumbnail: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=450&fit=crop&crop=center"
+                    },
+                    {
+                        title: "House Warming Teaser.mp4",
+                        driveLink: "https://drive.google.com/file/d/1QegTu3_e3FVs7RAqYMjDBUaFb_UyJT_M/view?usp=sharing",
+                        thumbnail: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=450&fit=crop&crop=center"
+                    },
+                    {
+                        title: "Bride & Groom Arrivals.mp4",
+                        driveLink: "https://drive.google.com/file/d/1oqb89B8AOIZrU-qw7VlFAbRy8nnrGaSh/view?usp=sharing",
+                        thumbnail: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&h=450&fit=crop&crop=center"
+                    },
+                    {
+                        title: "Pellikuturu.mp4",
+                        driveLink: "https://drive.google.com/file/d/1VPW2zH6gmcPhM4XVpSulA3js4rOAwoGi/view?usp=sharing",
+                        thumbnail: "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&h=450&fit=crop&crop=center"
+                    },
+                    {
+                        title: "Pellikoduku.mp4",
+                        driveLink: "https://drive.google.com/file/d/1BhiulU3Jxs45w66rZAp8bm-MNcBlAbDf/view?usp=sharing",
+                        thumbnail: "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&h=450&fit=crop&crop=center"
+                    }
+                ];
+            }
+            
+            renderPortfolioGrid();
+        }
+
+        function getVideoCategory(title) {
+            const lowerTitle = title.toLowerCase();
+            if (lowerTitle.includes('wedding') || lowerTitle.includes('bride') || lowerTitle.includes('groom') || 
+                lowerTitle.includes('ankish') || lowerTitle.includes('rutali') || lowerTitle.includes('pellikuturu') || 
+                lowerTitle.includes('pellikoduku')) {
+                return 'weddings';
+            } else if (lowerTitle.includes('festival') || lowerTitle.includes('ganesh') || lowerTitle.includes('fest')) {
+                return 'festivals';
+            } else if (lowerTitle.includes('event') || lowerTitle.includes('naga') || lowerTitle.includes('swaram')) {
+                return 'events';
+            } else if (lowerTitle.includes('house') || lowerTitle.includes('warming') || lowerTitle.includes('special')) {
+                return 'special';
+            }
+            return 'events'; // default category
+        }
+
+        function getCleanTitle(title) {
+            return title.replace(/\.(mp4|mov|avi|mkv|webm)$/i, '');
+        }
+
+        function extractFileId(driveLink) {
+            const patterns = [
+                /\/file\/d\/([a-zA-Z0-9-_]+)/,
+                /id=([a-zA-Z0-9-_]+)/,
+                /\/d\/([a-zA-Z0-9-_]+)/
+            ];
+            
+            for (const pattern of patterns) {
+                const match = driveLink.match(pattern);
+                if (match) {
+                    return match[1];
+                }
+            }
+            return null;
+        }
+
+        function convertToEmbedUrl(driveLink) {
+            const fileId = extractFileId(driveLink);
+            if (!fileId) {
+                return null;
+            }
+            return `https://drive.google.com/file/d/${fileId}/preview`;
+        }
+
+        function renderPortfolioGrid() {
+            const grid = document.getElementById('portfolioGrid');
+            if (!grid || !videoData.length) {
+                grid.innerHTML = '<p style="text-align: center; color: #b3b3b3; grid-column: 1 / -1;">No videos available</p>';
+                return;
+            }
+
+            grid.innerHTML = videoData.map((video, index) => {
+                const category = getVideoCategory(video.title);
+                const cleanTitle = getCleanTitle(video.title);
+                const fileId = extractFileId(video.driveLink);
+                
+                return `
+                    <div class="portfolio-item" data-category="${category}">
+                        <div class="video-card" data-drive-link="${video.driveLink}" data-title="${cleanTitle}">
+                            <div class="video-thumbnail">
+                                <img src="${video.thumbnail}" alt="${cleanTitle}" loading="lazy">
+                                <div class="play-overlay">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <div class="video-duration">--:--</div>
+                            </div>
+                            <div class="video-info">
+                                <h3>${cleanTitle}</h3>
+                                <p>Professional Video Editing</p>
+                                <span class="category-tag">${category.charAt(0).toUpperCase() + category.slice(1)}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Add click handlers for video cards
+            const videoCards = document.querySelectorAll('.video-card');
+            videoCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const driveLink = this.dataset.driveLink;
+                    const title = this.dataset.title;
+                    const embedUrl = convertToEmbedUrl(driveLink);
+                    
+                    if (embedUrl) {
+                        // Open video in Featured Work modal (for Google Drive videos)
+                        const modal = document.getElementById('featuredWorkModal');
+                        const modalVideo = document.getElementById('featuredWorkModalVideo');
+                        const modalTitle = document.getElementById('featuredWorkModalTitle');
+                        const modalCategory = document.getElementById('featuredWorkModalCategory');
+                        
+                        if (modal && modalVideo && modalTitle) {
+                            modalVideo.src = embedUrl;
+                            modalTitle.textContent = title;
+                            modalCategory.textContent = 'Video';
+                            
+                            modal.style.display = 'flex';
+                            requestAnimationFrame(() => {
+                                modal.classList.add('active');
+                            });
+                            
+                            document.body.style.overflow = 'hidden';
+                        }
+                    } else {
+                        console.error('Could not convert Google Drive link to embed URL:', driveLink);
+                        alert('Error: Could not load video. Please check the Google Drive link.');
+                    }
+                });
+            });
+
+            // Reinitialize portfolio filter after videos are loaded
+            setTimeout(() => {
+                if (window.portfolioFilter) {
+                    window.portfolioFilter.reinitialize();
+                }
+            }, 100);
+        }
+
+        function closeFeaturedWorkModal() {
+            const modal = document.getElementById('featuredWorkModal');
+            const modalVideo = document.getElementById('featuredWorkModalVideo');
+            
+            if (modal) {
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    if (modalVideo) {
+                        modalVideo.src = '';
+                    }
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            loadVideoData();
+            
+            // Add modal close handlers
+            const modalClose = document.getElementById('featuredWorkModalClose');
+            const modal = document.getElementById('featuredWorkModal');
+            
+            if (modalClose) {
+                modalClose.addEventListener('click', closeFeaturedWorkModal);
+            }
+            
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeFeaturedWorkModal();
+                    }
+                });
+            }
+            
+            // Escape key handler
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+                    closeFeaturedWorkModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

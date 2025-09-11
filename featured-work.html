@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured Work - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #FFD700;
+            --background-color: #0a0a0a;
+            --surface-color: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-top: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .grid-item {
+            position: relative;
+            aspect-ratio: 16/9;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--surface-color);
+            box-shadow: var(--shadow);
+        }
+
+        .grid-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(255, 215, 0, 0.2);
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .grid-item:hover .thumbnail {
+            transform: scale(1.1);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .grid-item:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--background-color);
+            transition: var(--transition);
+            transform: scale(0.8);
+        }
+
+        .grid-item:hover .play-icon {
+            transform: scale(1);
+            background: var(--primary-color);
+        }
+
+        .video-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .grid-item:hover .video-info {
+            transform: translateY(0);
+        }
+
+        .video-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-category {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            aspect-ratio: 16/9;
+            background: var(--surface-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.5);
+            transform: scale(0.8);
+            transition: var(--transition);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            border-radius: 50%;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: var(--primary-color);
+            color: var(--background-color);
+        }
+
+        .modal-video {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: var(--border-radius);
+        }
+
+        .video-title-modal {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            padding: 2rem;
+            color: var(--text-primary);
+        }
+
+        .video-title-modal h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-title-modal p {
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .featured-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .featured-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .play-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .video-info {
+                padding: 1.5rem 1rem 1rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Accessibility */
+        .grid-item:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        .modal-close:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="section-header">
+            <h1 class="section-title">Featured Work</h1>
+            <p class="section-subtitle">A showcase of my best video editing projects and creative work</p>
+        </section>
+
+        <div class="featured-grid" id="featuredGrid">
+            <!-- Grid items will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose" aria-label="Close video">
+                <i class="fas fa-times"></i>
+            </button>
+            <iframe class="modal-video" id="modalVideo" frameborder="0" allowfullscreen></iframe>
+            <div class="video-title-modal" id="modalVideoInfo">
+                <h3 id="modalTitle"></h3>
+                <p id="modalCategory"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Featured work data - Will be loaded from JSON file
+        let featuredWork = [];
+
+        class FeaturedWork {
+            constructor() {
+                this.grid = document.getElementById('featuredGrid');
+                this.modal = document.getElementById('videoModal');
+                this.modalVideo = document.getElementById('modalVideo');
+                this.modalClose = document.getElementById('modalClose');
+                this.modalTitle = document.getElementById('modalTitle');
+                this.modalCategory = document.getElementById('modalCategory');
+                
+                this.init();
+            }
+
+            init() {
+                this.loadVideoData();
+            }
+
+            /**
+             * Load video data from JSON file or fallback to inline data
+             */
+            async loadVideoData() {
+                try {
+                    // Try to load from JSON file first
+                    const response = await fetch('videos-data.json');
+                    if (response.ok) {
+                        featuredWork = await response.json();
+                        console.log('Loaded video data from JSON file:', featuredWork);
+                    } else {
+                        throw new Error('JSON file not found, using fallback data');
+                    }
+                } catch (error) {
+                    console.warn('Could not load from JSON file, using fallback data:', error.message);
+                    // Fallback data - matches your actual video data
+                    featuredWork = [
+                        {
+                            title: "Naga Swaram Event.mp4",
+                            driveLink: "https://drive.google.com/file/d/18-TOnOIbG_kxLLRgo1H-lXTQYSTyh9WT/view?usp=sharing",
+                            thumbnail: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=450&fit=crop&crop=center"
+                        },
+                        {
+                            title: "Ganesh Fest Teaser.mp4",
+                            driveLink: "https://drive.google.com/file/d/1cU4jM8vEfZuK9YsJ5Hny0vHPjjTYB4a5/view?usp=sharing",
+                            thumbnail: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop&crop=center"
+                        },
+                        {
+                            title: "Ankish & Rutali Teaser.mp4",
+                            driveLink: "https://drive.google.com/file/d/1hTduq4MczgWXYOI6bJMaeK7kiP52_nkb/view?usp=sharing",
+                            thumbnail: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=450&fit=crop&crop=center"
+                        },
+                        {
+                            title: "House Warming Teaser.mp4",
+                            driveLink: "https://drive.google.com/file/d/1QegTu3_e3FVs7RAqYMjDBUaFb_UyJT_M/view?usp=sharing",
+                            thumbnail: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=450&fit=crop&crop=center"
+                        },
+                        {
+                            title: "Bride & Groom Arrivals.mp4",
+                            driveLink: "https://drive.google.com/file/d/1oqb89B8AOIZrU-qw7VlFAbRy8nnrGaSh/view?usp=sharing",
+                            thumbnail: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&h=450&fit=crop&crop=center"
+                        },
+                        {
+                            title: "Pellikuturu.mp4",
+                            driveLink: "https://drive.google.com/file/d/1VPW2zH6gmcPhM4XVpSulA3js4rOAwoGi/view?usp=sharing",
+                            thumbnail: "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&h=450&fit=crop&crop=center"
+                        },
+                        {
+                            title: "Pellikoduku.mp4",
+                            driveLink: "https://drive.google.com/file/d/1BhiulU3Jxs45w66rZAp8bm-MNcBlAbDf/view?usp=sharing",
+                            thumbnail: "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&h=450&fit=crop&crop=center"
+                        }
+                    ];
+                }
+                
+                this.renderGrid();
+                this.bindEvents();
+            }
+
+            /**
+             * Extract Google Drive file ID from various Google Drive URL formats
+             * @param {string} driveLink - Google Drive URL
+             * @returns {string} - File ID
+             */
+            extractFileId(driveLink) {
+                const patterns = [
+                    /\/file\/d\/([a-zA-Z0-9-_]+)/,
+                    /id=([a-zA-Z0-9-_]+)/,
+                    /\/d\/([a-zA-Z0-9-_]+)/
+                ];
+                
+                for (const pattern of patterns) {
+                    const match = driveLink.match(pattern);
+                    if (match) {
+                        return match[1];
+                    }
+                }
+                
+                console.error('Could not extract file ID from:', driveLink);
+                return null;
+            }
+
+            /**
+             * Convert Google Drive sharing link to embed URL
+             * @param {string} driveLink - Original Google Drive sharing link
+             * @returns {string} - Embed URL for iframe
+             */
+            convertToEmbedUrl(driveLink) {
+                const fileId = this.extractFileId(driveLink);
+                if (!fileId) {
+                    return null;
+                }
+                
+                return `https://drive.google.com/file/d/${fileId}/preview`;
+            }
+
+            /**
+             * Extract clean filename from title (remove .mp4 extension)
+             * @param {string} title - Full filename with extension
+             * @returns {string} - Clean title without extension
+             */
+            getCleanTitle(title) {
+                return title.replace(/\.(mp4|mov|avi|mkv|webm)$/i, '');
+            }
+
+            renderGrid() {
+                if (!featuredWork || featuredWork.length === 0) {
+                    this.grid.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #b3b3b3;">
+                            <i class="fas fa-video" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                            <p>No videos available at the moment.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                this.grid.innerHTML = featuredWork.map((item, index) => {
+                    const fileId = this.extractFileId(item.driveLink);
+                    const cleanTitle = this.getCleanTitle(item.title);
+                    
+                    if (!fileId) {
+                        console.error('Invalid Google Drive link for video:', item.title, item.driveLink);
+                        return `
+                            <div class="grid-item error" style="opacity: 0.5;">
+                                <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #ff6b6b;">
+                                    <div style="text-align: center;">
+                                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                        <p>Invalid video link</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    
+                    return `
+                        <div class="grid-item" 
+                             data-file-id="${fileId}" 
+                             data-title="${this.escapeHtml(cleanTitle)}" 
+                             data-original-title="${this.escapeHtml(item.title)}"
+                             data-drive-link="${this.escapeHtml(item.driveLink)}"
+                             data-index="${index}"
+                             tabindex="0"
+                             role="button"
+                             aria-label="Play ${this.escapeHtml(cleanTitle)}">
+                            <img src="${this.escapeHtml(item.thumbnail)}" 
+                                 alt="${this.escapeHtml(cleanTitle)}" 
+                                 class="thumbnail" 
+                                 loading="lazy"
+                                 onload="this.classList.add('loaded')"
+                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIyNSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWExYTFhIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5vdCBhdmFpbGFibGU8L3RleHQ+Cjwvc3ZnPg=='; this.classList.add('loaded');">
+                            <div class="play-overlay">
+                                <div class="play-icon">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="video-info">
+                                <h3 class="video-title">${this.escapeHtml(cleanTitle)}</h3>
+                                <p class="video-category">Video</p>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            /**
+             * Escape HTML to prevent XSS
+             * @param {string} text - Text to escape
+             * @returns {string} - Escaped text
+             */
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            bindEvents() {
+                // Grid item clicks
+                this.grid.addEventListener('click', (e) => {
+                    const gridItem = e.target.closest('.grid-item');
+                    if (gridItem) {
+                        this.openModal(gridItem);
+                    }
+                });
+
+                // Keyboard navigation
+                this.grid.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        const gridItem = e.target.closest('.grid-item');
+                        if (gridItem) {
+                            this.openModal(gridItem);
+                        }
+                    }
+                });
+
+                // Modal close events
+                this.modalClose.addEventListener('click', () => this.closeModal());
+                
+                this.modal.addEventListener('click', (e) => {
+                    if (e.target === this.modal) {
+                        this.closeModal();
+                    }
+                });
+
+                // Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+                        this.closeModal();
+                    }
+                });
+            }
+
+            openModal(gridItem) {
+                const driveLink = gridItem.dataset.driveLink;
+                const title = gridItem.dataset.title;
+                const originalTitle = gridItem.dataset.originalTitle;
+
+                // Update modal content
+                this.modalTitle.textContent = title;
+                this.modalCategory.textContent = 'Video';
+
+                // Convert Google Drive link to embed URL
+                const embedUrl = this.convertToEmbedUrl(driveLink);
+                
+                if (!embedUrl) {
+                    console.error('Could not convert Google Drive link to embed URL:', driveLink);
+                    alert('Error: Could not load video. Please check the Google Drive link.');
+                    return;
+                }
+
+                // Set the iframe source
+                this.modalVideo.src = embedUrl;
+
+                // Show modal with animation
+                this.modal.style.display = 'flex';
+                requestAnimationFrame(() => {
+                    this.modal.classList.add('active');
+                });
+
+                // Prevent body scroll
+                document.body.style.overflow = 'hidden';
+
+                // Focus management
+                this.modalClose.focus();
+
+                // Log for debugging
+                console.log('Opening video:', {
+                    title: title,
+                    originalTitle: originalTitle,
+                    driveLink: driveLink,
+                    embedUrl: embedUrl
+                });
+            }
+
+            closeModal() {
+                // Hide modal with animation
+                this.modal.classList.remove('active');
+                
+                setTimeout(() => {
+                    this.modal.style.display = 'none';
+                    this.modalVideo.src = '';
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Show loading state
+            const grid = document.getElementById('featuredGrid');
+            if (grid) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #b3b3b3;">
+                        <div class="loading" style="display: inline-block; width: 40px; height: 40px; border: 4px solid rgba(255, 215, 0, 0.3); border-radius: 50%; border-top-color: #FFD700; animation: spin 1s ease-in-out infinite; margin-bottom: 1rem;"></div>
+                        <p>Loading videos...</p>
+                    </div>
+                `;
+            }
+            
+            // Initialize the component
+            new FeaturedWork();
+        });
+
+        // Add smooth scroll behavior
+        document.documentElement.style.scrollBehavior = 'smooth';
+
+        // Add loading states for images
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('.thumbnail');
+            images.forEach(img => {
+                img.addEventListener('load', () => {
+                    img.style.opacity = '1';
+                });
+                
+                img.addEventListener('error', () => {
+                    // Fallback for broken images
+                    img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIyNSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWExYTFhIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5vdCBhdmFpbGFibGU8L3RleHQ+Cjwvc3ZnPg==';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

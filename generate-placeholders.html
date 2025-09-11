@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Placeholder Images</title>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="225" style="border: 1px solid #ccc;"></canvas>
+    <br><br>
+    <button onclick="generateThumbnails()">Generate All Thumbnails</button>
+    <div id="output"></div>
+
+    <script>
+        function generateThumbnail(title, subtitle, filename) {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, 400, 225);
+            gradient.addColorStop(0, '#1a1a1a');
+            gradient.addColorStop(1, '#2a2a2a');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 400, 225);
+            
+            // Border
+            ctx.strokeStyle = '#FFD700';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(1, 1, 398, 223);
+            
+            // Play button circle
+            ctx.fillStyle = 'rgba(255, 215, 0, 0.8)';
+            ctx.beginPath();
+            ctx.arc(200, 140, 30, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Play triangle
+            ctx.fillStyle = '#000';
+            ctx.beginPath();
+            ctx.moveTo(190, 125);
+            ctx.lineTo(190, 155);
+            ctx.lineTo(220, 140);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Title
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 20px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(title, 200, 50);
+            
+            // Subtitle
+            ctx.fillStyle = '#ccc';
+            ctx.font = '16px Arial';
+            ctx.fillText(subtitle, 200, 75);
+            
+            // Duration
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+            ctx.fillRect(350, 190, 40, 25);
+            ctx.fillStyle = '#fff';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('2:30', 370, 205);
+            
+            // Convert to data URL
+            const dataURL = canvas.toDataURL('image/jpeg', 0.8);
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = dataURL;
+            link.textContent = `Download ${filename}`;
+            link.style.display = 'block';
+            link.style.margin = '10px 0';
+            
+            document.getElementById('output').appendChild(link);
+            
+            return dataURL;
+        }
+        
+        function generateThumbnails() {
+            const thumbnails = [
+                { title: 'Ankish & Rutali', subtitle: 'Wedding Teaser', filename: 'ankish-rutali-teaser.jpg' },
+                { title: 'Bride & Groom', subtitle: 'Arrivals', filename: 'bride-groom-arrivals.jpg' },
+                { title: 'Pellikoduku', subtitle: 'Wedding Ritual', filename: 'pellikoduku.jpg' },
+                { title: 'Pellikuthuru', subtitle: 'Wedding Ceremony', filename: 'pellikuthuru.jpg' },
+                { title: 'Ganesh Fest', subtitle: 'Festival Teaser', filename: 'ganesh-fest-teaser.jpg' },
+                { title: 'Naga Swaram', subtitle: 'Musical Event', filename: 'naga-swaram-event.jpg' },
+                { title: 'House Warming', subtitle: 'Special Occasion', filename: 'house-warming-teaser.jpg' }
+            ];
+            
+            thumbnails.forEach(thumb => {
+                generateThumbnail(thumb.title, thumb.subtitle, thumb.filename);
+            });
+        }
+    </script>
+</body>
+</html>

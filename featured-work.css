@@ -1,0 +1,300 @@
+/* Featured Work Section - CSS Only */
+.featured-work-section {
+    padding: 4rem 0;
+    background: #0a0a0a;
+}
+
+.featured-work-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.featured-work-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.featured-work-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.featured-work-subtitle {
+    font-size: 1.2rem;
+    color: #b3b3b3;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.featured-work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.featured-work-item {
+    position: relative;
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #1a1a1a;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.featured-work-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(255, 215, 0, 0.2);
+}
+
+.featured-work-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.featured-work-item:hover .featured-work-thumbnail {
+    transform: scale(1.1);
+}
+
+.featured-work-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.featured-work-item:hover .featured-work-overlay {
+    opacity: 1;
+}
+
+.featured-work-play-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #0a0a0a;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(0.8);
+}
+
+.featured-work-item:hover .featured-work-play-icon {
+    transform: scale(1);
+    background: #FFD700;
+}
+
+.featured-work-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 2rem 1.5rem 1.5rem;
+    transform: translateY(100%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.featured-work-item:hover .featured-work-info {
+    transform: translateY(0);
+}
+
+.featured-work-item-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.featured-work-item-category {
+    font-size: 0.9rem;
+    color: #FFD700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Video Modal */
+.featured-work-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.featured-work-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.featured-work-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    aspect-ratio: 16/9;
+    background: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 32px 64px rgba(0, 0, 0, 0.5);
+    transform: scale(0.8);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.featured-work-modal.active .featured-work-modal-content {
+    transform: scale(1);
+}
+
+.featured-work-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.featured-work-modal-close:hover {
+    background: #FFD700;
+    color: #0a0a0a;
+}
+
+.featured-work-modal-video {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+}
+
+.featured-work-modal-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    padding: 2rem;
+    color: #ffffff;
+}
+
+.featured-work-modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.featured-work-modal-category {
+    color: #b3b3b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .featured-work-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .featured-work-title {
+        font-size: 2.5rem;
+    }
+
+    .featured-work-container {
+        padding: 0 1rem;
+    }
+
+    .featured-work-modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-work-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .featured-work-title {
+        font-size: 2rem;
+    }
+
+    .featured-work-play-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .featured-work-info {
+        padding: 1.5rem 1rem 1rem;
+    }
+}
+
+/* Accessibility */
+.featured-work-item:focus {
+    outline: 2px solid #FFD700;
+    outline-offset: 2px;
+}
+
+.featured-work-modal-close:focus {
+    outline: 2px solid #FFD700;
+    outline-offset: 2px;
+}
+
+/* Loading states */
+.featured-work-thumbnail {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.featured-work-thumbnail.loaded {
+    opacity: 1;
+}
+
+/* Fallback for broken images */
+.featured-work-thumbnail[src=""],
+.featured-work-thumbnail:not([src]) {
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.featured-work-thumbnail[src=""]::after,
+.featured-work-thumbnail:not([src])::after {
+    content: "Image not available";
+}

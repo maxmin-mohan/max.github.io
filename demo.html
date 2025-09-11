@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohan Kumar Portfolio - Demo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #121212;
+            color: #fff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            color: #FFD700;
+            margin-bottom: 2rem;
+        }
+        .demo-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .demo-link {
+            background: #1e1e1e;
+            padding: 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .demo-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(255, 215, 0, 0.2);
+            border-color: #FFD700;
+        }
+        .demo-link h3 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+        .features {
+            text-align: left;
+            margin: 3rem 0;
+        }
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+        .features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+        .features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #FFD700;
+            font-weight: bold;
+        }
+        .note {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #FFD700;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Mohan Kumar's Video Editing Portfolio</h1>
+        <p>A sleek, modular, and storytelling-driven website showcasing professional video editing services.</p>
+        
+        <div class="note">
+            <strong>📝 Note:</strong> This is a demo of the portfolio website. All video content and contact information are placeholders for demonstration purposes.
+        </div>
+        
+        <div class="demo-links">
+            <a href="index.html" class="demo-link">
+                <h3>🏠 Homepage</h3>
+                <p>Hero section with animated background and featured videos carousel</p>
+            </a>
+            
+            <a href="portfolio.html" class="demo-link">
+                <h3>🎥 Portfolio</h3>
+                <p>Category-filtered video grid with carousels for each category</p>
+            </a>
+            
+            <a href="services.html" class="demo-link">
+                <h3>⚙️ Services</h3>
+                <p>Modular service cards with detailed information and pricing</p>
+            </a>
+            
+            <a href="about.html" class="demo-link">
+                <h3>👤 About</h3>
+                <p>Profile section with timeline and skills showcase</p>
+            </a>
+            
+            <a href="contact.html" class="demo-link">
+                <h3>📧 Contact</h3>
+                <p>Contact form with validation and FAQ section</p>
+            </a>
+        </div>
+        
+        <div class="features">
+            <h2>✨ Key Features</h2>
+            <ul>
+                <li>21st.dev-inspired modern design with dark theme</li>
+                <li>Fully responsive across all devices</li>
+                <li>Smooth scroll-based animations</li>
+                <li>Interactive video carousels with touch support</li>
+                <li>Portfolio filtering by category</li>
+                <li>Video modal system for fullscreen playback</li>
+                <li>Contact form with real-time validation</li>
+                <li>FAQ section with accordion functionality</li>
+                <li>Mobile-optimized navigation</li>
+                <li>SEO-friendly semantic HTML structure</li>
+            </ul>
+        </div>
+        
+        <div class="note">
+            <strong>🚀 Getting Started:</strong> Simply open any of the links above to explore the website. The site is built with vanilla HTML, CSS, and JavaScript - no build process required!
+        </div>
+        
+        <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #333;">
+            <p>&copy; 2024 Mohan Kumar - Professional Video Editor</p>
+            <p>Built with ❤️ using HTML5, CSS3, and JavaScript</p>
+        </footer>
+    </div>
+</body>
+</html>
